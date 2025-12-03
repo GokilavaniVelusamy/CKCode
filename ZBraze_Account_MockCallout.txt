@@ -1,0 +1,50 @@
+/********************************************************************************************************
+* (C) Copyright 2023 Charles & Keith. All rights reserved.
+* This code is property of Charles & Keith. Use, duplication and
+* disclosure in any form without permission of copyright holder is prohibited.
+* 
+******************************************************************************************************* 
+* @author Asha SP
+* @version 1.0
+* @created 25/01/2023
+* @description 
+* 
+*
+* @test class name - 
+*
+*  Change History:
+*  MM/DD/YYYY      Developer Name      Comments
+*  
+* 
+*/
+global class ZBraze_Account_MockCallout implements HttpCalloutMock{
+    
+    /*global HTTPResponse respond(HTTPRequest req) {
+HttpResponse res = new HttpResponse();
+res.setHeader('Content-Type', 'application/json');
+res.setBody('{"attributes_processed":1,"message":"success"}');
+//res.setBody('{"users": [{"first_name": "CKAK","last_name": "Return","email": "ck.return.test@gmail.com","custom_attributes": {"Source": "","VIP_Since_Date_NZ": "2023-04-11T04:00:00.000Z","VIP_Since_Date_NO": "2023-04-10T04:00:00.000Z","VIP_Since_Date_MT": "2023-04-10T04:00:00.000Z","VIP_Since_Date_MO": "2023-04-11T04:00:00.000Z","VIP_Since_Date_KR": "2023-04-10T04:00:00.000Z","VIP_Since_Date_HK": "2021-02-11T03:07:06.000Z","VIP_Since_Date_EU": "2020-12-29T15:00:50.000Z","VIP_Since_Date_CH": "2020-09-02T05:57:48.000Z","VIP_Since_Date_CA": "2021-02-04T05:54:32.000Z","VIP_Since_Date_AU": "2020-10-06T05:29:14.000Z","Shoe_Size": 10,"School_University_Name": "","Registration_Date": "2020-09-01T01:45:29.000Z","Most_Purchased_Color": "Olive","Most_Purchased_Category": "Bags","Mode_of_registration": "Web","Loyalty_Tier_US": "VIP","Loyalty_Tier_UK": "VIP","Loyalty_Tier_TW": "VIP","Loyalty_Tier_SG": "Gold Member","Loyalty_Tier_PAK": "","Loyalty_Tier_NZ": "Non Member","Loyalty_Tier_NO": "Non Member","Loyalty_Tier_MY": "","Loyalty_Tier_MT": "Non Member","Loyalty_Tier_MO": "Non Member","Loyalty_Tier_KR": "Non Member","Loyalty_Tier_KH": "","Loyalty_Tier_HK": "VIP","Loyalty_Tier_GB": "","Loyalty_Tier_EU": "VIP","Loyalty_Tier_CH": "VIP","Loyalty_Tier_CA": "VIP","Loyalty_Tier_AU": "VIP","Loyalty_Tier_AE": "","VIP_Since_Date_UK": "2021-06-21T08:53:31.000Z","First_Date_Of_Purchase": "2019-11-21T00:00:00.000Z","Favored_Medium_Of_Purchase": "0.0","Customer_Type": "Customer","sms_mobile_subscribed": "True","Ocapi_Customer_Id": "bc476aLagC3hjAfw93nZpX37Ky","VIP_Since_Date_US": "2021-02-04T05:54:32.000Z","utm_term": "10","utm_source": "10","utm_medium": "10","utm_content": "10","utm_campaign": "10","Last_purchase_date":"2021-06-21T00:00:00.000Z","Last_Login_Date": "2022-08-17T08:20:20.000Z","VIP_Since_Date_TW": "2020-09-30T04:09:50.000Z","VIP_Since_Date_SG": "2020-11-24T06:07:51.000Z" ,"VIP_Since_Date_AE": "2020-10-06T05:29:14.000Z","VIP_Since_Date_PAK": "2020-10-06T05:29:14.000Z", "VIP_Since_Date_KH": "2020-10-06T05:29:14.000Z", "VIP_Since_Date_MY": "2020-10-06T05:29:14.000Z", "Reseller_Flag": "True", "sms_subscribed" : "Subscribed","Site_URL" : "CA_EN","language" : "kr-en"}, "dob": "1980-03-02T00:00:00.000Z", "country": "SG","home_city": "SG","gender": "M", "email_subscribe": "subscribed" ,"Phone":"12324335","language" : "kr-en"}], "message": "success"}');
+res.setBody('{"users":[{"created_at":"2023-04-11T09:26:38.080Z","external_id":"0010l000019f4D1AAI","user_aliases":[],"appboy_id":"643527ceb60ecd00012c0e38","braze_id":"643527ceb60ecd00012c0e38","first_name":"huong 2","last_name":"Le","random_bucket":1874,"email":"huong.le04@test.com","custom_attributes":{"VIP_Since_Date_AU":"1900-01-01T00:00:00.000Z","Shoe_Size":34,"Registration_Date":"1900-01-01T00:00:00.000Z","Mode_of_registration":"Web","Loyalty_Tier_US":"Non Member","Loyalty_Tier_UK":"Non Member","Loyalty_Tier_TW":"Non Member","Loyalty_Tier_SG":"Non Member","Loyalty_Tier_NZ":"Non Member","Loyalty_Tier_NO":"Non Member","Loyalty_Tier_MT":"Non Member","Loyalty_Tier_MO":"Non Member","Loyalty_Tier_KR":"Non Member","Loyalty_Tier_HK":"Non Member","Loyalty_Tier_EU":"Non Member","Loyalty_Tier_CH":"Non Member","Loyalty_Tier_CA":"Non Member","Loyalty_Tier_AU":"Non Member","Customer_Type":"Customer","sms_subscribed":"sg","VIP_Since_Date_US":"1900-01-01T00:00:00.000Z","VIP_Since_Date_SG":"1900-01-01T00:00:00.000Z"},"dob":"2010-01-06T00:00:00.000Z","country":"IN","home_city":"Willemheim","total_revenue":0.0,"push_subscribe":"subscribed","email_subscribe":"subscribed"},{"created_at":"2023-04-11T13:48:53.980Z","external_id":"0010l00001T1bTaAAJ","user_aliases":[],"appboy_id":"643565452c8514000126e805","braze_id":"643565452c8514000126e805","first_name":"balu","last_name":"test","random_bucket":4182,"email":"balum1029@gmail.com","custom_attributes":{"Registration_Date":"2022-07-29T07:44:51.000Z","Mode_of_registration":"Web","Loyalty_Tier_US":"Silver Member","Loyalty_Tier_UK":"Silver Member","Loyalty_Tier_TW":"Silver Member","Loyalty_Tier_SG":"Silver Member","Loyalty_Tier_MY":"Silver Member","Loyalty_Tier_MO":"Silver Member","Loyalty_Tier_KR":"Silver Member","Loyalty_Tier_HK":"Silver Member","Loyalty_Tier_GB":"Silver Member","Loyalty_Tier_AU":"Silver Member","Loyalty_Tier_AE":"Non Member","Customer_Type":"Customer","Ocapi_Customer_Id":"abg2175KUcjZyZQH2sTSKcoJDe","utm_content":"Test Content","utm_campaign":"Test campaign1234","utm_medium":"test medium1234"},"dob":"1987-10-15T00:00:00.000Z","country":"DE","total_revenue":0.0,"push_subscribe":"subscribed","email_subscribe":"subscribed"}],"message":"success"}');
+res.setStatusCode(201);
+return res;
+}*/
+    
+    global HTTPResponse respond(HTTPRequest req) {
+        HttpResponse res = new HttpResponse();
+        res.setHeader('Content-Type', 'application/json');
+        res.setStatusCode(201);
+        
+        if(req.getEndpoint().contains('users/identify')){
+            res.setBody('{"aliases_processed": 1,"message": "success"}');
+        }else if(req.getEndpoint().contains('alias/new')){
+            res.setBody('{"aliases_processed": 1,"message": "success"}');
+        }else if(req.getEndpoint().contains('users/track')){
+            res.setBody('{"attributes_processed": 1,"message": "success"}');
+        }else if(req.getEndpoint().contains('export/ids')){
+            res.setBody('{"users":[{"external_id":"0010l00001YiLJoAAN","custom_attributes":null,"user_aliases":[{"alias_name":"accountck@gmail.com","alias_label":"Identifier"}],"email":"accountck@gmail.com"},{"external_id":null,"custom_attributes":null,"user_aliases":[{"alias_name":"nagaraju@yopmail.com","alias_label":"Identifier"}],"email":"nagaraju@yopmail.com"},{"external_id":"0010l00001YiLJoAAN","user_aliases":[{"alias_name":"guestuser@yopmail.com","alias_label":"Identifier"}],"email":"guestuser@yopmail.com","custom_attributes":{"Source":"","School_University_Name":"","Registration_Date":"2023-04-14T08:03:14.000Z","Most_Purchased_Color":"Dark Brown","Most_Purchased_Category":"Mens Footwear","Mode_of_registration":"Web","Loyalty_Tier_US":"Silver Member","Loyalty_Tier_UK":"Silver Member","Loyalty_Tier_TW":"Silver Member","Loyalty_Tier_SG":"Silver Member","Loyalty_Tier_PAK":"Silver Member","Loyalty_Tier_NZ":"Silver Member","Loyalty_Tier_NO":"Silver Member","Loyalty_Tier_MY":"Silver Member","Loyalty_Tier_MT":"Silver Member","Loyalty_Tier_MO":"Silver Member","Loyalty_Tier_KR":"Silver Member","Loyalty_Tier_KH":"","Loyalty_Tier_HK":"Silver Member","Loyalty_Tier_GB":"Silver Member","Loyalty_Tier_EU":"Silver Member","Loyalty_Tier_CH":"Silver Member","Loyalty_Tier_CA":"Silver Member","Loyalty_Tier_AU":"Silver Member","Loyalty_Tier_AE":"Silver Member","First_Date_Of_Purchase":"2023-04-14T00:00:00.000Z","Favored_Medium_Of_Purchase":"0.0","Customer_Type":"Customer","sms_mobile_subscribed":false,"Ocapi_Customer_Id":"abBNKksmsCNuN4xelHUp8p7aWk","utm_term":"0010l00001YiLJoAAN","utm_source":"0010l00001YiLJoAAN","utm_medium":"0010l00001YiLJoAAN","utm_content":"0010l00001YiLJoAAN","utm_campaign":"0010l00001YiLJoAAN","Last_purchase_date":"2023-04-14T00:00:00.000Z","Reseller_Flag":"False"}},{"external_id":"","user_aliases":[{"alias_name":"pavithra.paramanathan@verticurl.com","alias_label":"Identifier"}],"email":"pavithra.paramanathan@verticurl.com","custom_attributes":{"Source":"","School_University_Name":"","Registration_Date":"2023-03-13T07:08:52.000Z","Most_Purchased_Color":"Chalk","Most_Purchased_Category":"Ladies Footwear","Mode_of_registration":"Web","Loyalty_Tier_US":"Fashion Pass","Loyalty_Tier_UK":"Silver Member","Loyalty_Tier_TW":"Platinum Member","Loyalty_Tier_SG":"Platinum Member","Loyalty_Tier_PAK":"Silver Member","Loyalty_Tier_NZ":"Fashion Pass","Loyalty_Tier_NO":"Silver Member","Loyalty_Tier_MY":"Fashion Pass","Loyalty_Tier_MT":"Silver Member","Loyalty_Tier_MO":"Fashion Pass","Loyalty_Tier_KR":"Fashion Pass","Loyalty_Tier_KH":"","Loyalty_Tier_HK":"Fashion Pass","Loyalty_Tier_GB":"Fashion Pass","Loyalty_Tier_EU":"Fashion Pass","Loyalty_Tier_CH":"Silver Member","Loyalty_Tier_CA":"Fashion Pass","Loyalty_Tier_AU":"Fashion Pass","Loyalty_Tier_AE":"Fashion Pass","Favored_Medium_Of_Purchase":"0.0","Customer_Type":"Customer","sms_subscribed":"SG","sms_mobile_subscribed":true,"Ocapi_Customer_Id":"abDh0Q1iQJNNLxJNmA8m3q02Mv","Site_URL":"sg","utm_term":"","utm_source":"","utm_medium":"","utm_content":"","utm_campaign":"","First_Date_Of_Purchase":"2023-03-17T00:00:00.000Z","Last_purchase_date":"2023-04-11T00:00:00.000Z","VIP_Since_Date_TW":"2023-04-10T10:56:08.000Z","VIP_Since_Date_SG":"2023-04-11T02:35:43.000Z"}},{"external_id":"","user_aliases":[{"alias_name":"pavithra.paramanathan@verticurl.com","alias_label":"Identifier"}],"email":"pavithra.paramanathan@verticurl.com"}],"invalid_aliases":[{"alias_name":"nagaraju123@yopmail.com","alias_label":"Identifier","user":null,"app_group_id":"6376e823749ee600517fdfc7","generation_method":null,"moved_from":null}],"message":"success"}');
+            
+        }
+        
+        return res;
+    }
+}

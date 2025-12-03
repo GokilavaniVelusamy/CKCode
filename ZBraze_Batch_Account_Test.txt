@@ -1,0 +1,78 @@
+/********************************************************************************************************
+* (C) Copyright 2023 Charles & Keith. All rights reserved.
+* This code is property of Charles & Keith. Use, duplication and
+* disclosure in any form without permission of copyright holder is prohibited.
+* 
+******************************************************************************************************* 
+* @author Asha SP
+* @version 1.0
+* @created 25/01/2023
+* @description 
+* 
+*
+* @test class name - 
+*
+*  Change History:
+*  MM/DD/YYYY      Developer Name      Comments
+*  
+* 
+*/
+@istest 
+public without sharing  class ZBraze_Batch_Account_Test {
+     //Constructor
+    public ZBraze_Batch_Account_Test() {
+        
+    }
+    @isTest static void AccountBatchTestMethod(){
+        ZBraze_API_Master__c CustSettingCK = ZBraze_Test_Data_Factory.createCKCustomSetting();
+        ZBraze_API_Master__c CustSettingPD = ZBraze_Test_Data_Factory.createPDCustomSetting();
+        list<account> CKacclist = ZBraze_Test_Data_Factory.AccountCK(1);
+        list<account> PDacclist = ZBraze_Test_Data_Factory.AccountPD(1);
+        map<string, ZBraze_CustomAttribute_Export_Wrapper.user> extIdAttributeMap = new map<string, ZBraze_CustomAttribute_Export_Wrapper.user>();
+        ZBraze_CustomAttribute_Export_Wrapper userResponse = new ZBraze_CustomAttribute_Export_Wrapper();
+        string userData = '{"users": [{"external_id": "0010l00001YiLJoAAN","user_aliases": [{"alias_name": "guestuser@yopmail.com","alias_label": "Identifier"}],"email": "guestuser@yopmail.com","custom_attributes":{"Source": "","School_University_Name": "","Registration_Date": "2023-04-14T08:03:14.000Z","Most_Purchased_Color": "Dark Brown","Most_Purchased_Category": "Mens Footwear","Mode_of_registration": "Web","Loyalty_Tier_US": "Silver Member","Loyalty_Tier_UK": "Silver Member","Loyalty_Tier_TW": "Silver Member","Loyalty_Tier_SG": "Silver Member","Loyalty_Tier_PAK": "Silver Member","Loyalty_Tier_NZ": "Silver Member","Loyalty_Tier_NO": "Silver Member","Loyalty_Tier_MY": "Silver Member","Loyalty_Tier_MT": "Silver Member","Loyalty_Tier_MO": "Silver Member","Loyalty_Tier_KR": "Silver Member","Loyalty_Tier_KH": "","Loyalty_Tier_HK": "Silver Member","Loyalty_Tier_GB": "Silver Member","Loyalty_Tier_EU": "Silver Member","Loyalty_Tier_CH": "Silver Member","Loyalty_Tier_CA": "Silver Member","Loyalty_Tier_AU": "Silver Member","Loyalty_Tier_AE": "Silver Member","First_Date_Of_Purchase": "2023-04-14T00:00:00.000Z","Favored_Medium_Of_Purchase": "0.0","Customer_Type": "Customer","sms_mobile_subscribed": false,"Ocapi_Customer_Id": "abBNKksmsCNuN4xelHUp8p7aWk","utm_term": "0010l00001YiLJoAAN","utm_source": "0010l00001YiLJoAAN","utm_medium": "0010l00001YiLJoAAN","utm_content": "0010l00001YiLJoAAN","utm_campaign": "0010l00001YiLJoAAN","Last_purchase_date": "2023-04-14T00:00:00.000Z","Reseller_Flag": "False"}}]}';
+        userResponse=(ZBraze_CustomAttribute_Export_Wrapper)JSON.deserialize(userData, ZBraze_CustomAttribute_Export_Wrapper.class);
+        extIdAttributeMap.put(CKacclist[0].Id,userResponse.users[0]);
+        
+        Test.startTest();
+        //database.executeBatch(bs,10);
+        Test.setMock(HttpCalloutMock.class, new ZBraze_Account_MockCallout());
+        Database.executeBatch(new ZBraze_Batch_Account(5,new list<id>{CKacclist[0].Id, PDacclist[0].Id}));
+        Test.stopTest();
+        
+         ZBraze_Account_Callout.createAccountInBraze('CK', new list<string>{CKacclist[0].personemail});
+        ZBraze_Account_APIHandler.updateAccountInBraze('CK', extIdAttributeMap);
+        //ZBraze_Account_APIHelper.updateBrazeAliasEmailWithExtId('CK', new map<string,string>{CKacclist[0].Id => CKacclist[0].personemail});
+      //ZBraze_Account_APIHelper.updateBrazeExternalIdwithAlias('CK', new map<string,string>{CKacclist[0].Id => CKacclist[0].personemail});
+        
+        ZBraze_Account_Callout.updateBrazeExternalIdUsingAlias('CK', new map<string,string>{CKacclist[0].Id => CKacclist[0].personemail});
+        ZBraze_Account_APIHelper.exportUserDetailsByAlias('CK', new set<id>{CKacclist[0].Id});
+        ZBraze_Account_APIHelper.InvalidAliasBrazeSync('CK', new list<string>{CKacclist[0].personemail});
+    }
+    
+      @isTest static void AccountBatchPDTestMethod(){
+        ZBraze_API_Master__c CustSettingCK = ZBraze_Test_Data_Factory.createCKCustomSetting();
+        ZBraze_API_Master__c CustSettingPD = ZBraze_Test_Data_Factory.createPDCustomSetting();
+        list<account> PDacclist = ZBraze_Test_Data_Factory.AccountPD(1);
+        map<string, ZBraze_CustomAttribute_Export_Wrapper.user> extIdAttributeMap = new map<string, ZBraze_CustomAttribute_Export_Wrapper.user>();
+        ZBraze_CustomAttribute_Export_Wrapper userResponse = new ZBraze_CustomAttribute_Export_Wrapper();
+        string userData = '{"users": [{"external_id": "0010l00001YiLJoAAN","user_aliases": [{"alias_name": "guestuser@yopmail.com","alias_label": "Identifier"}],"email": "guestuser@yopmail.com","custom_attributes":{"Source": "","School_University_Name": "","Registration_Date": "2023-04-14T08:03:14.000Z","Most_Purchased_Color": "Dark Brown","Most_Purchased_Category": "Mens Footwear","Mode_of_registration": "Web","Loyalty_Tier_US": "Silver Member","Loyalty_Tier_UK": "Silver Member","Loyalty_Tier_TW": "Silver Member","Loyalty_Tier_SG": "Silver Member","Loyalty_Tier_PAK": "Silver Member","Loyalty_Tier_NZ": "Silver Member","Loyalty_Tier_NO": "Silver Member","Loyalty_Tier_MY": "Silver Member","Loyalty_Tier_MT": "Silver Member","Loyalty_Tier_MO": "Silver Member","Loyalty_Tier_KR": "Silver Member","Loyalty_Tier_KH": "","Loyalty_Tier_HK": "Silver Member","Loyalty_Tier_GB": "Silver Member","Loyalty_Tier_EU": "Silver Member","Loyalty_Tier_CH": "Silver Member","Loyalty_Tier_CA": "Silver Member","Loyalty_Tier_AU": "Silver Member","Loyalty_Tier_AE": "Silver Member","First_Date_Of_Purchase": "2023-04-14T00:00:00.000Z","Favored_Medium_Of_Purchase": "0.0","Customer_Type": "Customer","sms_mobile_subscribed": false,"Ocapi_Customer_Id": "abBNKksmsCNuN4xelHUp8p7aWk","utm_term": "0010l00001YiLJoAAN","utm_source": "0010l00001YiLJoAAN","utm_medium": "0010l00001YiLJoAAN","utm_content": "0010l00001YiLJoAAN","utm_campaign": "0010l00001YiLJoAAN","Last_purchase_date": "2023-04-14T00:00:00.000Z","Reseller_Flag": "False","subscribed_content_gender":"Male"}}]}';
+        userResponse=(ZBraze_CustomAttribute_Export_Wrapper)JSON.deserialize(userData, ZBraze_CustomAttribute_Export_Wrapper.class);
+        extIdAttributeMap.put(PDacclist[0].Id,userResponse.users[0]);
+        
+        Test.startTest();
+        //database.executeBatch(bs,10);
+        Test.setMock(HttpCalloutMock.class, new ZBraze_Account_MockCallout());
+        Database.executeBatch(new ZBraze_Batch_Account(5,new list<id>{PDacclist[0].Id}));
+        Test.stopTest();
+        
+         ZBraze_Account_Callout.createAccountInBraze('PD', new list<string>{PDacclist[0].personemail});
+        ZBraze_Account_APIHandler.updateAccountInBraze('PD', extIdAttributeMap);
+       // ZBraze_Account_APIHelper.updateBrazeAliasEmailWithExtId('PD', new map<string,string>{PDacclist[0].Id => PDacclist[0].personemail});
+      //ZBraze_Account_APIHelper.updateBrazeExternalIdwithAlias('PD', new map<string,string>{PDacclist[0].Id => PDacclist[0].personemail});
+      ZBraze_Account_Callout.updateBrazeExternalIdUsingAlias('PD', new map<string,string>{PDacclist[0].Id => PDacclist[0].personemail});
+        ZBraze_Account_APIHelper.exportUserDetailsByAlias('PD', new set<id>{PDacclist[0].Id});
+        ZBraze_Account_APIHelper.InvalidAliasBrazeSync('PD', new list<string>{PDacclist[0].personemail});
+    }
+    
+}
